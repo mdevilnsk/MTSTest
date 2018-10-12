@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_size">48dp</dimen>
+    <dimen name="small_padding">16dp</dimen>
+    <dimen name="big_padding">32dp</dimen>
+
+    <dimen name="small_text">12sp</dimen>
+    <dimen name="bigger_text">18sp</dimen>
+    <dimen name="big_button_width">72dp</dimen>
+
+</resources>
