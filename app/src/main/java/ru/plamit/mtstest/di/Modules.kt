@@ -12,6 +12,7 @@ import ru.plamit.mtstest.utils.IDefaultScheduler
 
 val usersListModule = module {
     single { RetrofitBuilder().createApi() }
+    single { RetrofitBuilder().createPicasso(get()) }
     single { Storage(get()) }
     single { DefaultScheduler() as IDefaultScheduler }
     single { UsersListInteractor(get(), get(), get()) as IUsersListInteractor }

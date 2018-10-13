@@ -5,12 +5,16 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.user_item.view.*
 import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 import ru.plamit.mtstest.R
 import ru.plamit.mtstest.utils.onClick
 
 class UsersListAdapter : RecyclerView.Adapter<UsersListAdapter.CurrencyViewHolder>(), KoinComponent {
+
+    private val picasso: Picasso by inject()
 
     var itemSelectionListener: ItemSelectionListener? = null
 
@@ -36,6 +40,7 @@ class UsersListAdapter : RecyclerView.Adapter<UsersListAdapter.CurrencyViewHolde
         }
         viwHolder.itemView.apply {
             //picasso userAva
+            picasso.load(item.avatar).into(userAva)
             userLogin.text = item.login
             userName.text = item.name
             userWork.text = item.companyName

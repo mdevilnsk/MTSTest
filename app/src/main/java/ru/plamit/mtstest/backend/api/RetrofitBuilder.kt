@@ -1,7 +1,10 @@
 package ru.plamit.mtstest.backend.api
 
+import android.content.Context
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
+import com.squareup.picasso.OkHttp3Downloader
+import com.squareup.picasso.Picasso
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
 import retrofit2.Retrofit
@@ -21,7 +24,7 @@ class RetrofitBuilder {
         private const val DEFAULT_TIMEOUT = 20L
     }
 
-    fun createApi(test: Boolean = false): IGithubApi{
+    fun createApi(test: Boolean = false): IGithubApi {
         val httpClient = buildOkHttpClient(DEFAULT_TIMEOUT, test)
 
         val retrofitBuilder = Retrofit.Builder()
@@ -33,6 +36,10 @@ class RetrofitBuilder {
         return retrofitBuilder.build().create(IGithubApi::class.java)
     }
 
+    fun createPicasso(ctx: Context): Picasso =
+            Picasso.Builder(ctx)
+                    .downloader(OkHttp3Downloader(buildOkHttpClient(DEFAULT_TIMEOUT, false)))
+                    .build()
 
     private fun buildOkHttpClient(timeout: Long, test: Boolean): OkHttpClient = OkHttpClient.Builder().apply {
         connectTimeout(timeout, TimeUnit.SECONDS)
