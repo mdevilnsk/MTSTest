@@ -1,4 +1,4 @@
-package ru.plamit.mtstest.api
+package ru.plamit.mtstest.backend.api
 
 import org.junit.Assert.*
 import org.junit.Test

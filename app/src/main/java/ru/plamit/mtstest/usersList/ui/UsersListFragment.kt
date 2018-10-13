@@ -1,4 +1,4 @@
-package ru.plamit.mtstest.ui.usersList
+package ru.plamit.mtstest.usersList.ui
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle

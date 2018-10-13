@@ -1,4 +1,4 @@
-package ru.plamit.mtstest.api
+package ru.plamit.mtstest.backend.api
 
 import com.google.gson.Gson
 import okhttp3.Interceptor
@@ -22,7 +22,8 @@ class BaseResponseInterceptor : Interceptor {
             in 200..299 -> return response
             else -> {
                 val baseResponse = Gson().fromJson(response.body()!!.string(), BaseErrorResponse::class.java)
-                val e = RuntimeException(baseResponse.error ?: baseResponse.message ?: "unknown error")
+                val e = ResponseException(response.code(), baseResponse.error
+                        ?: baseResponse.message ?: "unknown error")
                 throw e
             }
         }

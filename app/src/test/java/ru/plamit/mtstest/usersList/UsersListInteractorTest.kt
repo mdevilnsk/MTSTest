@@ -8,8 +8,8 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.Mockito.anyString
 import org.mockito.junit.MockitoJUnitRunner
-import ru.plamit.mtstest.api.IGithubApi
-import ru.plamit.mtstest.entity.GithubUserInformation
+import ru.plamit.mtstest.backend.api.IGithubApi
+import ru.plamit.mtstest.entity.GithubUserSubscriber
 import ru.plamit.mtstest.utils.DefaultSchedulerTest
 
 @Suppress("NonAsciiCharacters", "UNCHECKED_CAST")
@@ -58,15 +58,15 @@ class UsersListInteractorTest {
         testObserver.assertError(error)
     }
 
-    private fun generateGithubUsers(num: Int): List<GithubUserInformation> {
-        val users = ArrayList<GithubUserInformation>()
+    private fun generateGithubUsers(num: Int): List<GithubUserSubscriber> {
+        val users = ArrayList<GithubUserSubscriber>()
         for (i in 0..num) {
             users.add(generateGithubUser(num))
         }
         return users
     }
 
-    private fun generateGithubUser(id: Int) = GithubUserInformation(
+    private fun generateGithubUser(id: Int) = GithubUserSubscriber(
             "gists_$id",
             "repos_$id",
             "followingUrl_$id",

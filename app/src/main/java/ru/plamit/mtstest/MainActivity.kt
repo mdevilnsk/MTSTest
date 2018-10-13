@@ -3,7 +3,7 @@ package ru.plamit.mtstest
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-import ru.plamit.mtstest.ui.usersList.UsersListFragment
+import ru.plamit.mtstest.usersList.ui.UsersListFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package ru.plamit.mtstest.api
+package ru.plamit.mtstest.backend.api
 
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.plamit.mtstest.BuildConfig
-import ru.plamit.mtstest.api.IGithubApi.Companion.BASE_URL
+import ru.plamit.mtstest.backend.api.IGithubApi.Companion.BASE_URL
 import java.util.concurrent.TimeUnit
 
 /**
