@@ -38,6 +38,7 @@ class RetrofitBuilder {
         connectTimeout(timeout, TimeUnit.SECONDS)
         readTimeout(timeout, TimeUnit.SECONDS)
         addInterceptor(BaseResponseInterceptor())
+        addInterceptor(HeaderInterceptor())
         if (!test) addInterceptor(LoggingInterceptor.Builder()
                 .loggable(BuildConfig.DEBUG)
                 .setLevel(Level.BASIC)

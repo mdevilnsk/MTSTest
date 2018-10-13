@@ -10,6 +10,8 @@
         android:id="@+id/userAva"
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ContentDescription" />
 
@@ -19,26 +21,46 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/small_padding"
         android:layout_marginLeft="@dimen/small_padding"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/userName"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/userAva"
-        app:layout_constraintTop_toTopOf="@id/userAva"
-        tools:text="USD" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="User login" />
 
     <TextView
-        android:id="@+id/currencyDescription"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/small_padding"
         android:layout_marginLeft="@dimen/small_padding"
         android:textColor="@color/text_grey"
-        android:textSize="@dimen/small_text"
-        app:layout_constraintBottom_toBottomOf="@id/userAva"
+        android:singleLine="true"
+        android:ellipsize="marquee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/userAva"
+        app:layout_constraintStart_toEndOf="@id/userLogin"
+        app:layout_constraintTop_toTopOf="@id/userLogin"
+        tools:text="Long user name and surname asdf asdf a" />
+
+    <TextView
+        android:id="@+id/userWork"
         app:layout_constraintTop_toBottomOf="@id/userLogin"
-        tools:text="British pound" />
+        app:layout_constraintStart_toEndOf="@id/userAva"
+        android:layout_marginStart="@dimen/small_padding"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="work of user"/>
+
+    <TextView
+        android:id="@+id/userEmail"
+        app:layout_constraintTop_toBottomOf="@id/userWork"
+        app:layout_constraintStart_toEndOf="@id/userAva"
+        android:layout_marginStart="@dimen/small_padding"
+        android:layout_marginLeft="@dimen/small_padding"
+        tools:text="email@of.user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"
