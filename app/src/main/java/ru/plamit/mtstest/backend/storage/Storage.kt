@@ -56,7 +56,7 @@ class Storage(ctx: Context) {
         }.apply()
     }
 
-    private var userInformation: List<GithubUserInformation>
+    var userInformation: List<GithubUserInformation>
         get() {
             val type = object : TypeToken<List<GithubUserInformation>>() {}.type
             val users = get<List<GithubUserInformation>>(GIT_USERS_LIST, type)
