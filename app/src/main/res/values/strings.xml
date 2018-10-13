@@ -3,4 +3,6 @@
     <string name="error">ERROR</string>
     <string name="retry">Retry</string>
     <string name="empty">Sorry, no github users was found</string>
+    <string name="settings_usePicasso">Use Picasso</string>
+    <string name="settings_useGlide">Use Glide</string>
 </resources>

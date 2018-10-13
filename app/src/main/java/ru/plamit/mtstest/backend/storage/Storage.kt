@@ -19,6 +19,7 @@ class Storage(ctx: Context) {
     companion object {
         private const val PREFERENCE_NAME = "AppPreferences"
         private const val GIT_USERS_LIST = "GIT_USERS_LIST"
+        private const val LIBRARY_USE = "LIBRARY_USE"
     }
 
     init {
@@ -73,4 +74,8 @@ class Storage(ctx: Context) {
 
             set(GIT_USERS_LIST, shrinkedList)
         }
+
+    var libraryUse: String
+        get() = get(LIBRARY_USE, "picasso")
+        set(value) = set(LIBRARY_USE, value)
 }

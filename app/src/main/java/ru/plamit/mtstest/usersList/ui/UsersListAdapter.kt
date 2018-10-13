@@ -1,20 +1,22 @@
 package ru.plamit.mtstest.usersList.ui
 
-import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.user_item.view.*
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 import ru.plamit.mtstest.R
+import ru.plamit.mtstest.backend.storage.Storage
 import ru.plamit.mtstest.utils.onClick
 
 class UsersListAdapter : RecyclerView.Adapter<UsersListAdapter.CurrencyViewHolder>(), KoinComponent {
 
     private val picasso: Picasso by inject()
+    private val storage: Storage by inject()
 
     var itemSelectionListener: ItemSelectionListener? = null
 
@@ -24,7 +26,7 @@ class UsersListAdapter : RecyclerView.Adapter<UsersListAdapter.CurrencyViewHolde
             notifyDataSetChanged()
         }
 
-    interface ItemSelectionListener{
+    interface ItemSelectionListener {
         fun onItemSelected(login: String)
     }
 
@@ -39,8 +41,8 @@ class UsersListAdapter : RecyclerView.Adapter<UsersListAdapter.CurrencyViewHolde
             itemSelectionListener?.onItemSelected(item.login)
         }
         viwHolder.itemView.apply {
-            //picasso userAva
-            picasso.load(item.avatar).into(userAva)
+            if (storage.libraryUse == "glide") Glide.with(this).load(item.avatar).into(userAva)
+            else picasso.load(item.avatar).into(userAva)
             userLogin.text = item.login
             userName.text = item.name
             userWork.text = item.companyName
