@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MySplash" parent="AppTheme">
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 </resources>
