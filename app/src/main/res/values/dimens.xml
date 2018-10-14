@@ -2,6 +2,7 @@
 <resources>
     <dimen name="icon_size">48dp</dimen>
     <dimen name="small_padding">16dp</dimen>
+    <dimen name="smallest_padding">8dp</dimen>
     <dimen name="big_padding">32dp</dimen>
 
     <dimen name="small_text">12sp</dimen>

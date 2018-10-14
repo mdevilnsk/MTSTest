@@ -39,7 +39,7 @@ class UsersListViewModel(
                     viewState.postValue(it)
                 }, {
                     if (it is ResponseException)
-                    router?.routeToError(it.message ?: "unknkown error")
+                    router?.routeToError(it.message ?: "unknown error")
                 })
     }
 }
