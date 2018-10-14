@@ -47,12 +47,8 @@ class UsersListFragment : Fragment(), IUsersListRouter, UsersListAdapter.ItemSel
             if (usersItems?.isEmpty() == true) emptyList.visible()
             adapter.items = ArrayList(usersItems)
         })
-    }
-
-    override fun onResume() {
-        super.onResume()
         usersViewModel.router = this
-        usersViewModel.selectUser(BASE_USER)
+        if (savedInstanceState == null) usersViewModel.selectUser(BASE_USER)
     }
 
     override fun routeToError(message: String) {
