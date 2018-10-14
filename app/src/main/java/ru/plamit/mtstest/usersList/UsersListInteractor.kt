@@ -16,7 +16,13 @@ class UsersListInteractor(
     var users: MutableList<GithubUserInformation> = ArrayList()
 
     init {
-        users.addAll(storage.userInformation)
+        val nonNullElements = storage.userInformation
+        nonNullElements.filter {
+            @Suppress("SENSELESS_COMPARISON")
+            it != null
+        }.let {
+            users.addAll(it)
+        }
     }
 
     override fun getSubscribers(githubLogin: String): Single<List<GithubUserSubscriber>> =
@@ -24,7 +30,7 @@ class UsersListInteractor(
 
     override fun getUserInformation(githubLogin: String): Single<GithubUserInformation> {
         if (users.asSequence().map { it.login }.contains(githubLogin))
-            return Single.just(users.find { it.login == githubLogin })
+            return Single.just(users.find { it.login == githubLogin }).compose(scheduler.applySingle())
 
         return api.getUserInformation(githubLogin)
                 .doOnSuccess {

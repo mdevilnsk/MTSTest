@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     app:elevation="4dp"
     app:cardCornerRadius="4dp"
+    android:layout_marginStart="@dimen/smallest_padding"
+    android:layout_marginEnd="@dimen/smallest_padding"
     android:layout_marginBottom="@dimen/small_padding"
     android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/small_padding"
-        android:paddingEnd="@dimen/small_padding">
+        android:paddingStart="@dimen/smallest_padding"
+        android:paddingEnd="@dimen/smallest_padding">
 
         <ImageView
             android:id="@+id/userAva"

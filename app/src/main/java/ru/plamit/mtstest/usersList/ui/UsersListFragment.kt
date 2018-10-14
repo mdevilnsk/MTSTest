@@ -1,9 +1,10 @@
 package ru.plamit.mtstest.usersList.ui
 
 import android.arch.lifecycle.Observer
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,8 @@ class UsersListFragment : Fragment(), IUsersListRouter, UsersListAdapter.ItemSel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter.itemSelectionListener = this
-        usersList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        usersList.setHasFixedSize(true)
+        usersList.layoutManager = getLayoutManager()
         usersList.adapter = adapter
         loadingPb.visible()
         usersViewModel.viewState.observe(this, Observer { usersItems ->
@@ -74,4 +76,10 @@ class UsersListFragment : Fragment(), IUsersListRouter, UsersListAdapter.ItemSel
         }
         return true
     }
+
+    private fun getLayoutManager() =
+            StaggeredGridLayoutManager(
+                    if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 1 else 2,
+                    StaggeredGridLayoutManager.VERTICAL)
+
 }
