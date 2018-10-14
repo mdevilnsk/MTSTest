@@ -22,6 +22,8 @@ class UsersListFragment : Fragment(), IUsersListRouter, UsersListAdapter.ItemSel
     private val adapter = UsersListAdapter()
 
     companion object {
+        private const val BASE_USER = "octocat"
+
         fun newInstance(): UsersListFragment {
             return UsersListFragment()
         }
@@ -36,11 +38,12 @@ class UsersListFragment : Fragment(), IUsersListRouter, UsersListAdapter.ItemSel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter.itemSelectionListener = this
-        usersList.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
+        usersList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         usersList.adapter = adapter
         loadingPb.visible()
         usersViewModel.viewState.observe(this, Observer { usersItems ->
             loadingPb.gone()
+            activity?.title = usersViewModel.selectedUser
             if (usersItems?.isEmpty() == true) emptyList.visible()
             adapter.items = ArrayList(usersItems)
         })
@@ -49,18 +52,30 @@ class UsersListFragment : Fragment(), IUsersListRouter, UsersListAdapter.ItemSel
     override fun onResume() {
         super.onResume()
         usersViewModel.router = this
-        usersViewModel.selectUser("octocat")
+        usersViewModel.selectUser(BASE_USER)
     }
 
     override fun routeToError(message: String) {
-        val errorDialog = ErrorMessageDialogFragment.buildDialog(getString(R.string.error),message,click = {
-            usersViewModel.selectUser("octocat")
+        val errorDialog = ErrorMessageDialogFragment.buildDialog(getString(R.string.error), message, click = {
+            usersViewModel.selectUser(usersViewModel.selectedUser)
         })
-        errorDialog.show(activity?.supportFragmentManager,"error")
+        errorDialog.show(activity?.supportFragmentManager, "error")
     }
 
     override fun onItemSelected(login: String) {
         usersViewModel.selectUser(login)
         loadingPb.visible()
+    }
+
+    /**
+     * check for current user and select base user on back key pressed
+     * @return true if current user is base user
+     */
+    fun onBackPressed(): Boolean {
+        if (usersViewModel.selectedUser != BASE_USER) {
+            usersViewModel.selectUser(BASE_USER)
+            return false
+        }
+        return true
     }
 }

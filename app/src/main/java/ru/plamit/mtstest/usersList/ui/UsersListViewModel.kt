@@ -14,8 +14,11 @@ class UsersListViewModel(
 
     var router: IUsersListRouter? = null
 
+    var selectedUser: String = "octocat"
+
     @SuppressLint("CheckResult")
     override fun selectUser(login: String) {
+        selectedUser = login
         interactor.getSubscribers(login)
                 .flattenAsObservable { it }
                 .flatMap { subscriber ->

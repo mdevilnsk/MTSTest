@@ -12,12 +12,16 @@ class MainActivity : AppCompatActivity() {
 
     private val storage: Storage by inject()
 
+    companion object {
+        private const val USERS_LIST = "USERS_LIST"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, UsersListFragment.newInstance())
+                    .replace(R.id.container, UsersListFragment.newInstance(), USERS_LIST)
                     .commitNow()
         }
     }
@@ -35,5 +39,14 @@ class MainActivity : AppCompatActivity() {
             else->{}
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        val list = supportFragmentManager.findFragmentByTag(USERS_LIST)
+        if (list == null) {
+            super.onBackPressed()
+            return
+        }
+        if ((list as UsersListFragment).onBackPressed()) super.onBackPressed()
     }
 }
