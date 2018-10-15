@@ -44,8 +44,8 @@ class RetrofitBuilder {
     private fun buildOkHttpClient(timeout: Long, test: Boolean): OkHttpClient = OkHttpClient.Builder().apply {
         connectTimeout(timeout, TimeUnit.SECONDS)
         readTimeout(timeout, TimeUnit.SECONDS)
-        addInterceptor(BaseResponseInterceptor())
         addInterceptor(HeaderInterceptor())
+        addInterceptor(BaseResponseInterceptor())
         if (!test) addInterceptor(LoggingInterceptor.Builder()
                 .loggable(BuildConfig.DEBUG)
                 .setLevel(Level.BASIC)

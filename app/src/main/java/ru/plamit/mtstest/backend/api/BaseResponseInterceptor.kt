@@ -16,6 +16,8 @@ class BaseResponseInterceptor : Interceptor {
             throw RuntimeException("check internet connection")
         } catch (e: ConnectException) {
             throw RuntimeException("can't connect to server")
+        } catch (e: Throwable){
+            throw RuntimeException(e.localizedMessage ?: e.message ?: "unknown server error")
         }
 
         when (response.code()) {

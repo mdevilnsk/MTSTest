@@ -38,7 +38,6 @@ class UsersListViewModel(
                 .subscribe({
                     viewState.postValue(it)
                 }, {
-                    if (it is ResponseException)
                     router?.routeToError(it.message ?: "unknown error")
                 })
     }
