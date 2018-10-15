@@ -3,6 +3,7 @@ package ru.plamit.mtstest.usersList.ui
 import android.arch.lifecycle.Observer
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
@@ -56,6 +57,7 @@ class UsersListFragment : Fragment(), IUsersListRouter, UsersListAdapter.ItemSel
     override fun routeToError(message: String) {
         val errorDialog = ErrorMessageDialogFragment.buildDialog(getString(R.string.error), message, click = {
             usersViewModel.selectUser(usersViewModel.selectedUser)
+            it.dismiss()
         })
         errorDialog.show(activity?.supportFragmentManager, "error")
     }
